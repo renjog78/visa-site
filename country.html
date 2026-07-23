@@ -24,35 +24,52 @@
     </nav>
   </header>
 
-  <!-- ИММЕРСИВНЫЙ HERO -->
   <section class="immersive-hero" id="immersive-hero">
     <div class="immersive-hero-bg" id="immersive-bg"></div>
     <div class="immersive-hero-overlay"></div>
-    <div class="immersive-hero-content" id="hero-content">
-    </div>
+    <div class="immersive-hero-content" id="hero-content"></div>
   </section>
 
-  <!-- КОНТЕНТ СТЕКЛО -->
   <main class="immersive-main" id="immersive-main">
     <section class="section">
-      <div class="immersive-grid">
+      <div class="country-full-grid">
         <!-- ЛЕВАЯ КОЛОНКА -->
-        <div class="immersive-left">
+        <div class="country-left">
           <div class="glass-card">
-            <h3>О визе</h3>
+            <h3>О стране</h3>
             <div id="country-description"></div>
           </div>
 
-          <div class="glass-card" style="margin-top: 24px;">
+          <div class="glass-card" style="margin-top: 20px;">
+            <h3>Информация о стране</h3>
+            <div id="country-extra-info"></div>
+          </div>
+
+          <div class="glass-card" style="margin-top: 20px;">
+            <h3>Достопримечательности</h3>
+            <ul id="country-attractions" class="glass-list"></ul>
+          </div>
+
+          <div class="glass-card" style="margin-top: 20px;">
+            <h3>Советы путешественникам</h3>
+            <ul id="country-tips" class="glass-list"></ul>
+          </div>
+
+          <div class="glass-card" style="margin-top: 20px;">
             <h3>Необходимые документы</h3>
-            <ul id="country-documents" style="padding-left: 20px;"></ul>
+            <ul id="country-documents" class="glass-list"></ul>
+          </div>
+
+          <div class="glass-card" style="margin-top: 20px;">
+            <h3>Нюансы по визе</h3>
+            <ul id="country-visa-nuances" class="glass-list"></ul>
           </div>
         </div>
 
         <!-- ПРАВАЯ КОЛОНКА -->
-        <div class="immersive-right">
+        <div class="country-right">
           <div class="glass-card glass-card-accent">
-            <h3>Информация</h3>
+            <h3>Стоимость визы</h3>
             <div class="info-grid">
               <div class="info-item">
                 <span class="info-label">Тип визы</span>
@@ -77,7 +94,41 @@
           <div class="glass-card" style="margin-top: 16px;">
             <h3>Нужна консультация?</h3>
             <p style="font-size: 14px; margin-bottom: 16px; opacity: 0.7;">Позвоните нам — перезвоним за 15 минут</p>
-            <a href="tel:+78001234567" class="btn btn-glass" style="width: 100%; justify-content: center;">8 (800) 123-45-67</a>
+            <a href="tel:+77001234567" class="btn btn-glass" style="width: 100%; justify-content: center;">+7 (700) 123-45-67</a>
+          </div>
+
+          <div class="glass-card" style="margin-top: 16px;">
+            <h3>Наши услуги</h3>
+            <div class="services-list">
+              <div class="service-item">
+                <span class="service-icon">✈️</span>
+                <div>
+                  <strong>Авиабилеты</strong>
+                  <span>Подберём лучшие билеты</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <span class="service-icon">🏨</span>
+                <div>
+                  <strong>Отели</strong>
+                  <span>Забронируем отель</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <span class="service-icon">🛡️</span>
+                <div>
+                  <strong>Страховка</strong>
+                  <span>Оформим медицинскую страховку</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <span class="service-icon">🚗</span>
+                <div>
+                  <strong>Трансфер</strong>
+                  <span>Встретим в аэропорту</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -103,7 +154,6 @@
 
   <script src="js/app.js"></script>
   <script>
-    // Палитры стран — только для акцентов, НЕ для фона
     const COUNTRY_ACCENTS = {
       'germany':     '#DD0000',
       'france':      '#002395',
@@ -139,17 +189,11 @@
       const country = COUNTRIES_DATA.countries.find(c => c.id === countryId);
       if (!country) { window.location.href = 'countries.html'; return; }
 
-      const accent = COUNTRY_ACCENTS[countryId] || '#00B4D8';
-
+      const accent = COUNTRY_ACCENTS[countryId] || '#E8725C';
       document.title = `${country.name} — VisaTourService`;
-
-      // Фон — фотка страны на всю страницу
       document.getElementById('immersive-bg').style.backgroundImage = `url(${country.photo})`;
-
-      // Акцент
       document.documentElement.style.setProperty('--country-accent', accent);
 
-      // Hero контент
       document.getElementById('hero-content').innerHTML = `
         <div class="hero-flag-wrap">
           <img src="${country.flagImg}" alt="${country.name}" class="hero-flag">
@@ -165,23 +209,7 @@
         </div>
       `;
 
-      // Описание
-      document.getElementById('country-description').innerHTML = `
-        <p style="line-height: 1.8;">${country.description}</p>
-      `;
-
-      // Документы
-      document.getElementById('country-documents').innerHTML =
-        country.documents.map(d => `<li>${d}</li>`).join('');
-
-      // Инфо
-      document.getElementById('visa-type').textContent = country.visaType;
-      document.getElementById('visa-price').textContent = country.price;
-      document.getElementById('visa-duration').textContent = country.duration;
-      document.getElementById('visa-processing').textContent = country.processingTime;
-
-      // Кнопка
-      document.getElementById('apply-btn').style.background = accent;
+      loadCountryPage();
     }
 
     loadImmersivePage();
