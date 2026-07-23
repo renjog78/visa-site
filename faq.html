@@ -91,6 +91,9 @@
         });
       }, { threshold: 0.1 });
       container.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+      }, 100);
     }
 
     function toggleFAQ(index) {

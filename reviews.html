@@ -43,7 +43,7 @@
         <div class="reviews-score">
           <span class="reviews-score-num">4.9</span>
           <div class="reviews-score-stars">★★★★★</div>
-          <span class="reviews-score-count">基于 1 240 отзывов</span>
+          <span class="reviews-score-count">На основе 1 240 отзывов</span>
         </div>
         <div class="reviews-bars">
           <div class="reviews-bar-row">
@@ -242,6 +242,11 @@
         });
       }, { threshold: 0.1 });
       grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      // Показываем все fade-in элементы сразу
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+      }, 100);
     }
 
     renderReviews();
