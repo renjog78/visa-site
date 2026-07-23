@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог — VisaTourService</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="logo"><span class="logo-icon">✈</span>VisaTourService</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="countries.html">Страны</a></li>
+        <li><a href="tools.html">Инструменты</a></li>
+        <li><a href="blog.html" class="active">Блог</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="contact.html">Контакты</a></li>
+      </ul>
+      <a href="apply.html" class="btn btn-primary">Оставить заявку</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-hero" style="min-height: 320px;">
+      <div class="about-hero-bg"></div>
+      <div class="about-hero-content fade-in">
+        <h1>Блог о путешествиях</h1>
+        <p>Полезные советы, инструкции и новости о визах</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="blog-grid" id="blog-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>VisaTourService</h4>
+        <p style="color: var(--text-secondary); font-size: 14px;">Профессиональное оформление виз из Казахстана. Алматы.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <a href="tel:+77001234567">+7 (700) 123-45-67</a>
+        <a href="mailto:info@visatourservice.kz">info@visatourservice.kz</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 VisaTourService, Алматы, Казахстан. Все права защищены.</div>
+  </footer>
+
+  <script>
+    const BLOG_DATA = [
+      {
+        title: "Как получить шенгенскую визу из Казахстана: полная инструкция 2026",
+        date: "15 Июля 2026",
+        category: "Шенген",
+        preview: "Пошаговая инструкция по получению шенгенской визы для граждан Казахстана. Какие документы нужны, куда подавать, сколько это стоит.",
+        readTime: "7 мин"
+      },
+      {
+        title: "Топ-10 ошибок при подаче документов на визу",
+        date: "10 Июля 2026",
+        category: "Советы",
+        preview: "Самые частые ошибки, из-за которых получают отказ. Как их избежать и повысить шансы на одобрение.",
+        readTime: "5 мин"
+      },
+      {
+        title: "Виза в США: что ожидать на собеседовании",
+        date: "5 Июля 2026",
+        category: "США",
+        preview: "Подробный разбор собеседования в консульстве США. Какие вопросы задают, как отвечать, что брать с собой.",
+        readTime: "8 мин"
+      },
+      {
+        title: "Безвизовые страны для граждан Казахстана в 2026",
+        date: "1 Июля 2026",
+        category: "Новости",
+        preview: "Актуальный список стран, куда можно поехать без визы. Условия пребывания и особенности.",
+        readTime: "6 мин"
+      },
+      {
+        title: "Как правильно заполнить анкету на шенгенскую визу",
+        date: "25 Июня 2026",
+        category: "Шенген",
+        preview: "Пошаговая инструкция по заполнению анкеты. Скриншоты, примеры, частые вопросы.",
+        readTime: "10 мин"
+      },
+      {
+        title: "Страхование путешественников: зачем нужно и как выбрать",
+        date: "20 Июня 2026",
+        category: "Страхование",
+        preview: "Какая страховка нужна для разных стран, на что обращать внимание, сколько стоит и где оформить.",
+        readTime: "5 мин"
+      }
+    ];
+
+    function renderBlog() {
+      const grid = document.getElementById('blog-grid');
+      grid.innerHTML = BLOG_DATA.map((post, i) => `
+        <div class="blog-card fade-in">
+          <div class="blog-card-header">
+            <span class="blog-category">${post.category}</span>
+            <span class="blog-read-time">${post.readTime} чтения</span>
+          </div>
+          <h3 class="blog-card-title">${post.title}</h3>
+          <p class="blog-card-preview">${post.preview}</p>
+          <div class="blog-card-footer">
+            <span class="blog-date">${post.date}</span>
+            <a href="#" class="blog-link">Читать →</a>
+          </div>
+        </div>
+      `).join('');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    renderBlog();
+  </script>
+</body>
+</html>

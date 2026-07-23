@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — VisaTourService</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="logo"><span class="logo-icon">✈</span>VisaTourService</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="countries.html">Страны</a></li>
+        <li><a href="tools.html">Инструменты</a></li>
+        <li><a href="blog.html">Блог</a></li>
+        <li><a href="faq.html" class="active">FAQ</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="contact.html">Контакты</a></li>
+      </ul>
+      <a href="apply.html" class="btn btn-primary">Оставить заявку</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-hero" style="min-height: 320px;">
+      <div class="about-hero-bg"></div>
+      <div class="about-hero-content fade-in">
+        <h1>Часто задаваемые вопросы</h1>
+        <p>Ответы на самые популярные вопросы о визах и путешествиях</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="faq-container" id="faq-list">
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>VisaTourService</h4>
+        <p style="color: var(--text-secondary); font-size: 14px;">Профессиональное оформление виз из Казахстана. Алматы.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <a href="tel:+77001234567">+7 (700) 123-45-67</a>
+        <a href="mailto:info@visatourservice.kz">info@visatourservice.kz</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 VisaTourService, Алматы, Казахстан. Все права защищены.</div>
+  </footer>
+
+  <script>
+    const FAQ_DATA = [
+      { q: "Сколько стоит оформление визы?", a: "Стоимость зависит от страны и типа визы. Шенген — от 8 500 ₽, США — от 15 000 ₽, Азия — от 4 000 ₽. Точную стоимость рассчитаем после бесплатной консультации." },
+      { q: "Как долго оформляется виза?", a: "Шенген — 5-10 рабочих дней, США — 10-15 дней, Великобритания — 15-20 дней, Канада — 15-25 дней. Срочное оформление возможно за дополнительную плату." },
+      { q: "Какие документы нужны для шенгенской визы?", a: "Загранпаспорт, 2 фото 3.5x4.5, справка с работы, выписка с банка за 3 месяца, бронирование отеля и билетов, медицинская страховка на 30 000€, анкета." },
+      { q: "Можно ли получить мультивизу?", a: "Да! При наличии хорошей визовой истории выдаем мультивизы на 6 месяцев или 1 год. Для этого нужно предоставить дополнительные документы, подтверждающие связь с родиной." },
+      { q: "Что делать, если отказали в визе?", a: "Не паникуйте! Проанализируем причину отказа, исправим ошибки и подадим повторно. Наша статистика показывает 98% успешных заявок." },
+      { q: "Нужна ли медицинская страховка?", a: "Да, для шенгенских стран страховка обязательна — минимум 30 000€. Для других стран рекомендуем оформить. Мы поможем оформить полис." },
+      { q: "Можно ли оформить визу онлайн?", a: "Для большинства стран мы работаем онлайн — вы присылаете документы, мы оформляем. Личный визит нужен только для сдачи биометрии (отпечатки пальцев)." },
+      { q: "Что такое биометрия и когда её сдавать?", a: "Биометрия — это отпечатки пальцев и фото. Нужна для шенгенских виз, США, Канады и ряда других стран. Сдается один раз и действует 5 лет." },
+      { q: "Как оплатить услуги?", a: "Принимаем наличные, карты, переводы. Оплата — после одобрения визы или поэтапно. Мы не берём предоплату до начала работы." },
+      { q: "Помогаете ли с бронированием отелей и билетов?", a: "Да! Мы помогаем с бронированием отелей, авиабилетов, оформлением страховки и организацией трансфера. Полный сервис путешественника." },
+      { q: "Можно ли отследить статус заявки?", a: "Да! На странице «Инструменты» есть трекер статуса. Вводите номер заявки и видите на каком этапе ваша виза." },
+      { q: "Вы работаете с юридическими лицами?", a: "Да, мы работаем как с физическими, так и с юридическими лицами. Для компаний — корпоративные тарифы и персональный менеджер." }
+    ];
+
+    function renderFAQ() {
+      const container = document.getElementById('faq-list');
+      container.innerHTML = FAQ_DATA.map((item, i) => `
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFAQ(${i})">
+            <span>${item.q}</span>
+            <span class="faq-icon" id="faq-icon-${i}">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-${i}">
+            <p>${item.a}</p>
+          </div>
+        </div>
+      `).join('');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      container.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    function toggleFAQ(index) {
+      const answer = document.getElementById(`faq-answer-${index}`);
+      const icon = document.getElementById(`faq-icon-${index}`);
+      const isOpen = answer.classList.contains('open');
+
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+
+      if (!isOpen) {
+        answer.classList.add('open');
+        icon.textContent = '−';
+      }
+    }
+
+    renderFAQ();
+  </script>
+</body>
+</html>
