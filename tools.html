@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Инструменты — VisaTourService</title>
+  <title>Сервисы — VisaTourService</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -14,9 +14,9 @@
       <ul class="nav-links">
         <li><a href="index.html">Главная</a></li>
         <li><a href="countries.html">Страны</a></li>
-        <li><a href="tools.html" class="active">Инструменты</a></li>
-        <li><a href="blog.html">Блог</a></li>
+        <li><a href="tools.html" class="active">Сервисы</a></li>
         <li><a href="reviews.html">Отзывы</a></li>
+        <li><a href="blog.html">Блог</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="about.html">О нас</a></li>
         <li><a href="contact.html">Контакты</a></li>
@@ -29,58 +29,83 @@
     <section class="about-hero" style="min-height: 320px;">
       <div class="about-hero-bg"></div>
       <div class="about-hero-content">
-        <h1>Полезные инструменты</h1>
-        <p>Калькулятор стоимости, чеклист документов и трекер статуса</p>
+        <h1>Полезные сервисы</h1>
+        <p>Проверьте требования, рассчитайте стоимость и подготовьте документы</p>
       </div>
     </section>
 
-    <!-- КАЛЬКУЛЯТОР -->
+    <!-- ПРОВЕРКА ТРЕБОВАНИЙ -->
     <section class="section">
+      <div class="tool-card">
+        <div class="tool-header">
+          <span class="tool-icon">🔍</span>
+          <div>
+            <h2>Проверка визовых требований</h2>
+            <p>Введите страну — получите полный список требований</p>
+          </div>
+        </div>
+        <div class="tool-content">
+          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+            <select id="req-country" style="flex: 1; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; font-family: inherit; background: var(--bg); color: var(--primary);">
+              <option value="">Выберите страну</option>
+              <option value="schengen">Шенгенская зона</option>
+              <option value="usa">США</option>
+              <option value="uk">Великобритания</option>
+              <option value="canada">Канада</option>
+              <option value="japan">Япония</option>
+              <option value="china">Китай</option>
+              <option value="thailand">Таиланд</option>
+              <option value="uae">ОАЭ</option>
+              <option value="turkey">Турция</option>
+              <option value="australia">Австралия</option>
+            </select>
+            <button class="btn btn-primary" onclick="checkRequirements()">Проверить</button>
+          </div>
+          <div id="req-result"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- РАСЧЁТ СТОИМОСТИ -->
+    <section class="section" style="padding-top: 0;">
       <div class="tool-card">
         <div class="tool-header">
           <span class="tool-icon">💰</span>
           <div>
-            <h2>Калькулятор стоимости визы</h2>
+            <h2>Расчёт стоимости визы</h2>
             <p>Узнайте предварительную стоимость оформления</p>
           </div>
         </div>
         <div class="tool-content">
-          <div class="calc-form">
-            <div class="form-group">
-              <label>Страна назначения</label>
-              <select id="calc-country" onchange="calculateCost()">
-                <option value="">Выберите страну</option>
-                <option value="schengen">Шенген (Германия, Франция, Италия и др.)</option>
-                <option value="usa">США</option>
-                <option value="uk">Великобритания</option>
-                <option value="canada">Канада</option>
-                <option value="japan">Япония</option>
-                <option value="thailand">Таиланд</option>
-                <option value="uae">ОАЭ</option>
-                <option value="australia">Австралия</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Количество заявок</label>
-              <select id="calc-count" onchange="calculateCost()">
-                <option value="1">1 человек</option>
-                <option value="2">2 человека</option>
-                <option value="3">3 человека</option>
-                <option value="4">4+ человека</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Срочность</label>
-              <select id="calc-urgency" onchange="calculateCost()">
-                <option value="standard">Стандартная</option>
-                <option value="urgent">Срочная (+50%)</option>
-              </select>
-            </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+            <select id="calc-country" onchange="calcPrice()">
+              <option value="">Страна</option>
+              <option value="8500">Шенген — от 8 500 ₽</option>
+              <option value="15000">США — от 15 000 ₽</option>
+              <option value="12000">Великобритания — от 12 000 ₽</option>
+              <option value="14000">Канада — от 14 000 ₽</option>
+              <option value="9000">Япония — от 9 000 ₽</option>
+              <option value="8000">Китай — от 8 000 ₽</option>
+              <option value="4500">Таиланд — от 4 500 ₽</option>
+              <option value="6000">ОАЭ — от 6 000 ₽</option>
+              <option value="3500">Турция — от 3 500 ₽</option>
+              <option value="16000">Австралия — от 16 000 ₽</option>
+            </select>
+            <select id="calc-count" onchange="calcPrice()">
+              <option value="1">1 человек</option>
+              <option value="2">2 человека</option>
+              <option value="3">3 человека</option>
+              <option value="4">4+ человека</option>
+            </select>
+            <select id="calc-urgent" onchange="calcPrice()">
+              <option value="1">Стандарт</option>
+              <option value="1.5">Срочно (+50%)</option>
+            </select>
           </div>
-          <div class="calc-result" id="calc-result">
-            <div class="calc-total" id="calc-total">—</div>
-            <p>Предварительная стоимость</p>
-            <small>Точную стоимость рассчитает менеджер после консультации</small>
+          <div style="text-align: center; padding: 24px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);">
+            <div style="font-size: 40px; font-weight: 800; color: var(--accent);" id="calc-total">—</div>
+            <div style="font-size: 14px; color: var(--text-secondary);">Предварительная стоимость</div>
+            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Точную стоимость рассчитает менеджер</div>
           </div>
         </div>
       </div>
@@ -92,88 +117,63 @@
         <div class="tool-header">
           <span class="tool-icon">📋</span>
           <div>
-            <h2>Проверка документов</h2>
-            <p>Узнайте какой пакет документов нужен именно вам</p>
+            <h2>Контрольный список документов</h2>
+            <p>Отмечайте готовые документы — ничего не забудете</p>
           </div>
         </div>
         <div class="tool-content">
-          <div class="calc-form">
-            <div class="form-group">
-              <label>Страна назначения</label>
-              <select id="check-country" onchange="generateChecklist()">
-                <option value="">Выберите страну</option>
-                <option value="schengen">Шенгенская зона</option>
-                <option value="usa">США</option>
-                <option value="uk">Великобритания</option>
-                <option value="canada">Канада</option>
-                <option value="japan">Япония</option>
-                <option value="thailand">Таиланд</option>
-                <option value="uae">ОАЭ</option>
-              </select>
+          <div style="margin-bottom: 16px;">
+            <select id="checklist-country" onchange="loadChecklist()" style="width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; font-family: inherit; background: var(--bg); color: var(--primary);">
+              <option value="">Выберите страну</option>
+              <option value="schengen">Шенгенская зона</option>
+              <option value="usa">США</option>
+              <option value="uk">Великобритания</option>
+              <option value="canada">Канада</option>
+              <option value="japan">Япония</option>
+              <option value="thailand">Таиланд</option>
+            </select>
+          </div>
+          <div id="checklist-container"></div>
+          <div id="checklist-progress" style="display: none; margin-top: 16px; padding: 12px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-size: 13px; font-weight: 600;">Прогресс</span>
+              <span style="font-size: 13px; color: var(--accent); font-weight: 700;" id="cl-count">0/0</span>
+            </div>
+            <div style="height: 6px; background: var(--border); border-radius: 3px; overflow: hidden;">
+              <div style="height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s;" id="cl-bar"></div>
             </div>
           </div>
-          <div class="checklist-result" id="checklist-result">
-            <p style="color: var(--text-secondary);">Выберите страну для просмотра списка документов</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- ТРЕКЕР СТАТУСА -->
-    <section class="section" style="padding-top: 0;">
-      <div class="tool-card">
-        <div class="tool-header">
-          <span class="tool-icon">📍</span>
-          <div>
-            <h2>Трекер статуса заявки</h2>
-            <p>Отслеживайте этапы оформления вашей визы</p>
-          </div>
-        </div>
-        <div class="tool-content">
-          <div class="tracker-form">
-            <input type="text" id="tracker-id" placeholder="Введите номер заявки (например: 1001)">
-            <button class="btn btn-primary" onclick="trackStatus()">Проверить статус</button>
-          </div>
-          <div class="tracker-result" id="tracker-result" style="display: none;">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ЗАПИСЬ НА КОНСУЛЬТАЦИЮ -->
+    <!-- ЗАПИСЬ -->
     <section class="section" style="padding-top: 0;">
       <div class="tool-card">
         <div class="tool-header">
           <span class="tool-icon">📅</span>
           <div>
-            <h2>Запись на консультацию</h2>
-            <p>Выберите удобное время для бесплатной консультации</p>
+            <h2>Запись на бесплатную консультацию</h2>
+            <p>Выберите удобное время — мы перезвоним</p>
           </div>
         </div>
         <div class="tool-content">
-          <div class="booking-grid">
-            <div class="booking-dates" id="booking-dates"></div>
-            <div class="booking-slots" id="booking-slots">
-              <p style="color: var(--text-secondary);">Сначала выберите дату</p>
-            </div>
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 16px;" id="book-dates"></div>
+          <div id="book-times" style="display: none; margin-bottom: 16px;">
+            <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px;">Выберите время:</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="book-slots"></div>
           </div>
-          <div class="booking-form" id="booking-form" style="display: none; margin-top: 24px;">
-            <div class="form-row">
-              <div class="form-group">
-                <label>Ваше имя</label>
-                <input type="text" id="book-name" placeholder="Имя">
-              </div>
-              <div class="form-group">
-                <label>Телефон</label>
-                <input type="tel" id="book-phone" placeholder="+7 (700) 123-45-67">
-              </div>
+          <div id="book-form" style="display: none;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+              <input type="text" id="book-name" placeholder="Ваше имя" style="padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; font-family: inherit;">
+              <input type="tel" id="book-phone" placeholder="+7 (700) 123-45-67" style="padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; font-family: inherit;">
             </div>
-            <button class="btn btn-primary" onclick="confirmBooking()" style="width: 100%; justify-content: center;">Записаться</button>
+            <button class="btn btn-primary" onclick="bookConsult()" style="width: 100%; justify-content: center;">Записаться</button>
           </div>
-          <div id="booking-success" style="display: none; text-align: center; padding: 24px;">
-            <div style="font-size: 48px; margin-bottom: 12px;">✓</div>
-            <h3 style="color: var(--primary); margin-bottom: 8px;">Вы записаны!</h3>
-            <p style="color: var(--text-secondary);">Мы перезвоним вам для подтверждения</p>
+          <div id="book-success" style="display: none; text-align: center; padding: 24px;">
+            <div style="font-size: 48px; margin-bottom: 8px;">✓</div>
+            <h3 style="color: var(--primary); margin-bottom: 4px;">Вы записаны!</h3>
+            <p style="color: var(--text-secondary); font-size: 14px;">Мы перезвоним вам для подтверждения</p>
           </div>
         </div>
       </div>
@@ -196,129 +196,202 @@
   </footer>
 
   <script>
-    // КАЛЬКУЛЯТОР
-    const PRICES = {
-      schengen: 8500, usa: 15000, uk: 12000, canada: 14000,
-      japan: 9000, thailand: 4500, uae: 6000, australia: 16000
+    // ПРОВЕРКА ТРЕБОВАНИЙ
+    const REQUIREMENTS = {
+      schengen: {
+        title: "Шенгенская виза",
+        docs: ["Загранпаспорт (от 3 месяцев после возвращения)", "2 фото 3.5x4.5 на белом фоне", "Справка с места работы", "Выписка с банка за 3 месяца", "Бронирование отеля", "Авиабилеты туда-обратно", "Медицинская страховка 30 000€", "Анкета (онлайн)"],
+        time: "5-10 рабочих дней",
+        cost: "от 8 500 ₽",
+        biometric: "Да (один раз в 5 лет)",
+        tip: "Подавайте в консульство страны основного пребывания"
+      },
+      usa: {
+        title: "Виза в США (B1/B2)",
+        docs: ["Загранпаспорт (от 6 месяцев)", "Анкета DS-160 (онлайн)", "Фото 5x5", "Справка с места работы", "Выписка с банка", "Документы на имущество", "Справка о доходах"],
+        time: "10-15 рабочих дней",
+        cost: "от 15 000 ₽",
+        biometric: "Да (собеседование в консульстве)",
+        tip: "Покажите связь с Казахстаном — работу, семью, имущество"
+      },
+      uk: {
+        title: "Виза в Великобританию",
+        docs: ["Загранпаспорт (от 6 месяцев)", "Анкета онлайн (на английском)", "Фото 3.5x4.5", "Справка с работы (на английском)", "Выписка с банка за 6 месяцев", "Доказательства связи с родиной"],
+        time: "15-20 рабочих дней",
+        cost: "от 12 000 ₽",
+        biometric: "Нет",
+        tip: "Британская виза — одна из самых строгих, готовьте всё идеально"
+      },
+      canada: {
+        title: "Виза в Канаду",
+        docs: ["Загранпаспорт", "Анкета онлайн", "Фото 3.5x4.5", "Справка с места работы", "Выписка с банка", "Письмо о связи с родиной", "Биометрия"],
+        time: "15-25 рабочих дней",
+        cost: "от 14 000 ₽",
+        biometric: "Да (обязательно)",
+        tip: "Канадская виза оформляется дольше — подавайте заранее"
+      },
+      japan: {
+        title: "Виза в Японию",
+        docs: ["Загранпаспорт", "Анкета", "Фото 4.5x4.5", "Справка с места работы", "Выписка с банка", "Программа пребывания", "Приглашение (желательно)"],
+        time: "5-7 рабочих дней",
+        cost: "от 9 000 ₽",
+        biometric: "Нет",
+        tip: "Приглашение от японской стороны значительно ускоряет процесс"
+      },
+      china: {
+        title: "Виза в Китай",
+        docs: ["Загранпаспорт", "Анкета", "Фотография", "Приглашение или бронирование", "Выписка с банка", "Билеты туда-обратно"],
+        time: "5-7 рабочих дней",
+        cost: "от 8 000 ₽",
+        biometric: "Нет",
+        tip: "Для Гонконга (до 7 дней) виза не нужна"
+      },
+      thailand: {
+        title: "Виза в Таиланд",
+        docs: ["Загранпаспорт", "Анкета", "Фотография", "Бронирование отеля", "Обратный билет", "Выписка с банка"],
+        time: "3-5 рабочих дней",
+        cost: "от 4 500 ₽",
+        biometric: "Нет",
+        tip: "Безвиз на 30 дней — можно не оформлять визу заранее"
+      },
+      uae: {
+        title: "Виза в ОАЭ",
+        docs: ["Загранпаспорт", "Анкета", "Фотография", "Бронирование отеля", "Обратный билет", "Выписка с банка"],
+        time: "3-5 рабочих дней",
+        cost: "от 6 000 ₽",
+        biometric: "Нет",
+        tip: "Безвиз на 30 дней — можно лететь без визы"
+      },
+      turkey: {
+        title: "Виза в Турцию",
+        docs: ["Загранпаспорт (от 6 месяцев)", "Анкета онлайн", "Фотография", "Бронирование отеля", "Обратный билет"],
+        time: "1-2 рабочих дня",
+        cost: "от 3 500 ₽",
+        biometric: "Нет",
+        tip: "Безвиз на 60 дней — виза не нужна"
+      },
+      australia: {
+        title: "Виза в Австралию",
+        docs: ["Загранпаспорт", "Анкета онлайн", "Фотография", "Справка с работы", "Выписка с банка", "Страховой полис"],
+        time: "20-30 рабочих дней",
+        cost: "от 16 000 ₽",
+        biometric: "Нет",
+        tip: "Оформляйте минимум за месяц до поездки"
+      }
     };
 
-    function calculateCost() {
-      const country = document.getElementById('calc-country').value;
-      const count = parseInt(document.getElementById('calc-count').value);
-      const urgency = document.getElementById('calc-urgency').value;
-      if (!country) { document.getElementById('calc-total').textContent = '—'; return; }
-      let total = PRICES[country] * count;
-      if (urgency === 'urgent') total = Math.round(total * 1.5);
+    function checkRequirements() {
+      const country = document.getElementById('req-country').value;
+      const container = document.getElementById('req-result');
+      if (!country) { container.innerHTML = ''; return; }
+      const r = REQUIREMENTS[country];
+      container.innerHTML = `
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px;">
+          <h3 style="font-size: 18px; color: var(--primary); margin-bottom: 16px;">${r.title}</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div><span style="font-size: 12px; color: var(--text-secondary); display: block;">Сроки</span><strong>${r.time}</strong></div>
+            <div><span style="font-size: 12px; color: var(--text-secondary); display: block;">Стоимость</span><strong style="color: var(--accent);">${r.cost}</strong></div>
+            <div><span style="font-size: 12px; color: var(--text-secondary); display: block;">Биометрия</span><strong>${r.biometric}</strong></div>
+          </div>
+          <h4 style="font-size: 14px; margin-bottom: 10px;">Документы:</h4>
+          <ul style="list-style: none; margin-bottom: 16px;">${r.docs.map(d => `<li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px;">→ ${d}</li>`).join('')}</ul>
+          <div style="padding: 12px; background: var(--accent-glow); border-radius: var(--radius); border: 1px solid var(--accent); font-size: 13px;"><strong>💡 Совет:</strong> ${r.tip}</div>
+        </div>
+      `;
+    }
+
+    // РАСЧЁТ
+    function calcPrice() {
+      const price = parseInt(document.getElementById('calc-country').value) || 0;
+      const count = parseInt(document.getElementById('calc-count').value) || 1;
+      const mult = parseFloat(document.getElementById('calc-urgent').value) || 1;
+      if (!price) { document.getElementById('calc-total').textContent = '—'; return; }
+      const total = Math.round(price * count * mult);
       document.getElementById('calc-total').textContent = total.toLocaleString('ru-RU') + ' ₽';
     }
 
     // ЧЕКЛИСТ
     const CHECKLISTS = {
-      schengen: ["Загранпаспорт (срок действия от 3 месяцев)", "2 фото 3.5x4.5", "Справка с места работы", "Выписка с банка за 3 месяца", "Бронирование отеля", "Билеты туда-обратно", "Медицинская страховка (30 000€)", "Анкета (онлайн)"],
-      usa: ["Загранпаспорт (6+ месяцев)", "Анкета DS-160 (онлайн)", "Фото 5x5", "Справка с работы", "Выписка с банка", "Документы на имущество", "Приглашение (если есть)", "Справка о доходах"],
-      uk: ["Загранпаспорт (6+ месяцев)", "Анкета онлайн (англ.)", "Фото 3.5x4.5", "Справка с работы (англ.)", "Выписка с банка за 6 мес.", "Доказательства связи с родиной", "Бронирование отеля"],
+      schengen: ["Загранпаспорт (действует 3+ мес.)", "2 фото 3.5x4.5", "Справка с работы", "Выписка с банка за 3 мес.", "Бронирование отеля", "Авиабилеты", "Медицинская страховка 30 000€", "Анкета (онлайн)"],
+      usa: ["Загранпаспорт (6+ мес.)", "Анкета DS-160", "Фото 5x5", "Справка с работы", "Выписка с банка", "Документы на имущество", "Справка о доходах"],
+      uk: ["Загранпаспорт (6+ мес.)", "Анкета (англ.)", "Фото 3.5x4.5", "Справка с работы (англ.)", "Выписка с банка за 6 мес.", "Доказательства связи с родиной"],
       canada: ["Загранпаспорт", "Анкета онлайн", "Фото 3.5x4.5", "Справка с работы", "Выписка с банка", "Письмо о связи с родиной", "Биометрия"],
-      japan: ["Загранпаспорт", "Анкета", "Фото 4.5x4.5", "Справка с работы", "Выписка с банка", "Программа пребывания", "Приглашение (желательно)"],
-      thailand: ["Загранпаспорт", "Анкета", "Фото", "Бронирование отеля", "Обратный билет", "Выписка с банка"],
-      uae: ["Загранпаспорт", "Анкета", "Фото", "Бронирование отеля", "Обратный билет", "Выписка с банка"]
+      japan: ["Загранпаспорт", "Анкета", "Фото 4.5x4.5", "Справка с работы", "Выписка с банка", "Программа пребывания", "Приглашение"],
+      thailand: ["Загранпаспорт", "Анкета", "Фото", "Бронирование отеля", "Обратный билет", "Выписка с банка"]
     };
 
-    function generateChecklist() {
-      const country = document.getElementById('check-country').value;
-      const container = document.getElementById('checklist-result');
-      if (!country) { container.innerHTML = '<p style="color: var(--text-secondary);">Выберите страну</p>'; return; }
+    function loadChecklist() {
+      const country = document.getElementById('checklist-country').value;
+      const container = document.getElementById('checklist-container');
+      const progress = document.getElementById('checklist-progress');
+      if (!country) { container.innerHTML = ''; progress.style.display = 'none'; return; }
       const docs = CHECKLISTS[country];
-      container.innerHTML = '<ul class="checklist">' + docs.map((d, i) =>
-        `<li><label><input type="checkbox" onchange="updateChecklistProgress()"> ${d}</label></li>`
-      ).join('') + '</ul><div class="checklist-progress"><div class="checklist-bar"><div class="checklist-fill" id="checklist-fill" style="width: 0%;"></div></div><span id="checklist-count">0/${docs.length}</span></div>`;
+      container.innerHTML = docs.map((d, i) => `
+        <label style="display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--border); cursor: pointer; font-size: 14px;">
+          <input type="checkbox" onchange="updateProgress()" style="width: 18px; height: 18px; accent-color: var(--accent);">
+          <span>${d}</span>
+        </label>
+      `).join('');
+      progress.style.display = 'block';
+      updateProgress();
     }
 
-    function updateChecklistProgress() {
-      const checks = document.querySelectorAll('.checklist input:checked');
-      const total = document.querySelectorAll('.checklist input').length;
-      const pct = total ? (checks.length / total * 100) : 0;
-      document.getElementById('checklist-fill').style.width = pct + '%';
-      document.getElementById('checklist-count').textContent = checks.length + '/' + total;
+    function updateProgress() {
+      const checks = document.querySelectorAll('#checklist-container input:checked').length;
+      const total = document.querySelectorAll('#checklist-container input').length;
+      const pct = total ? (checks / total * 100) : 0;
+      document.getElementById('cl-bar').style.width = pct + '%';
+      document.getElementById('cl-count').textContent = checks + '/' + total;
     }
 
-    // ТРЕКЕР
-    function trackStatus() {
-      const id = document.getElementById('tracker-id').value.trim();
-      if (!id) return;
-      const apps = JSON.parse(localStorage.getItem('visa-applications') || '[]');
-      const app = apps.find(a => a.id == id);
-      const result = document.getElementById('tracker-result');
-      result.style.display = 'block';
-
-      if (app) {
-        const stages = ['new', 'processing', 'documents', 'submitted', 'approved', 'completed'];
-        const labels = ['Заявка создана', 'В обработке', 'Документы получены', 'Подана в консульство', 'Одобрена', 'Завершена'];
-        const currentIdx = stages.indexOf(app.status);
-        result.innerHTML = '<div class="tracker-stages">' + stages.map((s, i) =>
-          `<div class="tracker-stage ${i <= currentIdx ? 'active' : ''}"><div class="tracker-dot"></div><span>${labels[i]}</span></div>`
-        ).join('') + '</div>';
-      } else {
-        result.innerHTML = '<div class="tracker-empty"><p>Заявка не найдена. Проверьте номер или создайте новую заявку.</p><a href="apply.html" class="btn btn-primary" style="margin-top: 12px;">Оставить заявку</a></div>';
-      }
-    }
-
-    // ЗАПИСЬ НА КОНСУЛЬТАЦИЮ
-    let selectedDate = null;
-    let selectedTime = null;
-
-    function renderBookingDates() {
-      const container = document.getElementById('booking-dates');
-      const dates = [];
+    // ЗАПИСЬ
+    (function() {
+      const dates = document.getElementById('book-dates');
       const now = new Date();
-      for (let i = 1; i <= 7; i++) {
+      let html = '';
+      for (let i = 1; i <= 5; i++) {
         const d = new Date(now);
         d.setDate(d.getDate() + i);
         if (d.getDay() === 0) continue;
-        dates.push(d);
-      }
-      container.innerHTML = '<div class="booking-date-grid">' + dates.map((d, i) => {
         const day = d.getDate();
         const month = d.toLocaleDateString('ru-RU', { month: 'short' });
         const weekday = d.toLocaleDateString('ru-RU', { weekday: 'short' });
-        return `<button class="booking-date-btn" onclick="selectDate(${i}, '${d.toISOString()}')"><span class="bd-day">${day}</span><span class="bd-month">${month}</span><span class="bd-week">${weekday}</span></button>`;
-      }).join('') + '</div>';
-    }
+        html += `<button onclick="pickDate(this, '${weekday} ${day} ${month}')" style="padding: 14px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; text-align: center; font-family: inherit; transition: all 0.2s;">
+          <div style="font-size: 20px; font-weight: 700; color: var(--primary);">${day}</div>
+          <div style="font-size: 11px; color: var(--text-secondary);">${month}</div>
+          <div style="font-size: 11px; color: var(--text-secondary);">${weekday}</div>
+        </button>`;
+      }
+      dates.innerHTML = html;
+    })();
 
-    function selectDate(index, dateStr) {
-      document.querySelectorAll('.booking-date-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.booking-date-btn')[index].classList.add('active');
-      selectedDate = new Date(dateStr);
+    function pickDate(btn, label) {
+      document.querySelectorAll('#book-dates button').forEach(b => { b.style.borderColor = 'var(--border)'; b.style.background = 'var(--surface)'; });
+      btn.style.borderColor = 'var(--accent)';
+      btn.style.background = 'var(--accent-glow)';
       const slots = ['10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
-      document.getElementById('booking-slots').innerHTML = '<div class="booking-slot-grid">' +
-        slots.map(s => `<button class="booking-slot-btn" onclick="selectTime(this, '${s}')">${s}</button>`).join('') + '</div>';
+      document.getElementById('book-times').style.display = 'block';
+      document.getElementById('book-slots').innerHTML = slots.map(s =>
+        `<button onclick="pickTime(this, '${s}')" style="padding: 10px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; font-size: 14px; font-weight: 600; font-family: inherit; transition: all 0.2s;">${s}</button>`
+      ).join('');
     }
 
-    function selectTime(btn, time) {
-      document.querySelectorAll('.booking-slot-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      selectedTime = time;
-      document.getElementById('booking-form').style.display = 'block';
+    function pickTime(btn, time) {
+      document.querySelectorAll('#book-slots button').forEach(b => { b.style.borderColor = 'var(--border)'; b.style.background = 'var(--surface)'; b.style.color = 'var(--primary)'; });
+      btn.style.borderColor = 'var(--accent)';
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      document.getElementById('book-form').style.display = 'block';
     }
 
-    function confirmBooking() {
+    function bookConsult() {
       const name = document.getElementById('book-name').value;
       const phone = document.getElementById('book-phone').value;
-      if (!name || !phone || !selectedDate || !selectedTime) return;
-      document.getElementById('booking-form').style.display = 'none';
-      document.getElementById('booking-success').style.display = 'block';
+      if (!name || !phone) return;
+      document.getElementById('book-form').style.display = 'none';
+      document.getElementById('book-times').style.display = 'none';
+      document.getElementById('book-success').style.display = 'block';
     }
-
-    renderBookingDates();
-
-    // Fade-in — запускаем сразу
-    setTimeout(() => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-      // Также показываем все fade-in элементы сразу на случай если observer не сработал
-      document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-    }, 100);
   </script>
 </body>
 </html>
