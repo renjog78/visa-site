@@ -320,7 +320,7 @@ const COUNTRIES_DATA = {
       name: "США",
       flag: "🇺🇸",
       flagImg: "https://flagcdn.com/w160/us.png",
-      photo: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=1920&q=80",
+      photo: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1920&q=80",
       region: "americas",
       visaType: "B1/B2 виза",
       price: "от 15 000 ₽",
