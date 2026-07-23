@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страны — VisaTourService</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">✈</span>
+        VisaTourService
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="countries.html" class="active">Страны</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul>
+      <a href="apply.html" class="btn btn-primary">Оставить заявку</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" style="padding: 48px 24px;">
+      <h1>Выберите страну</h1>
+      <p>Мы поможем получить визу в любую страну мира</p>
+    </section>
+
+    <section class="section">
+      <div class="filter-tabs" id="region-filters">
+        <button class="filter-tab active" data-region="all">Все страны</button>
+        <button class="filter-tab" data-region="europe">Европа</button>
+        <button class="filter-tab" data-region="americas">Америка</button>
+        <button class="filter-tab" data-region="asia">Азия</button>
+        <button class="filter-tab" data-region="oceania">Океания</button>
+      </div>
+
+      <div class="countries-grid" id="countries-grid">
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>VisaTourService</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 14px;">Профессиональное оформление виз с 2015 года.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <a href="tel:+78001234567">8 (800) 123-45-67</a>
+        <a href="mailto:info@visatourservice.ru">info@visatourservice.ru</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 VisaTourService. Все права защищены.
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    loadAllCountries();
+
+    document.getElementById('region-filters').addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-tab')) {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        const region = e.target.dataset.region;
+        loadAllCountries(region);
+      }
+    });
+
+    // Fade-in при скролле
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

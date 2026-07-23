@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заявка — VisaTourService</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">✈</span>
+        VisaTourService
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="countries.html">Страны</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul>
+      <a href="apply.html" class="btn btn-primary">Оставить заявку</a>
+    </nav>
+  </header>
+
+  <main style="padding: 48px 24px;">
+    <div class="form-container" style="animation: fadeInUp 0.6s ease;">
+      <h2 style="text-align: center; margin-bottom: 8px; color: var(--primary);">Заявка на визу</h2>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: 32px;">Заполните форму и мы свяжемся с вами в течение 15 минут</p>
+
+      <div class="form-steps">
+        <div class="form-step active" data-step="1"></div>
+        <div class="form-step" data-step="2"></div>
+        <div class="form-step" data-step="3"></div>
+      </div>
+
+      <form id="visa-form">
+        <div class="form-step-content" data-step="1">
+          <div class="form-group">
+            <label for="country">Страна назначения *</label>
+            <select id="country" name="country" required>
+              <option value="">Выберите страну</option>
+              <option value="germany">Германия</option>
+              <option value="france">Франция</option>
+              <option value="italy">Италия</option>
+              <option value="spain">Испания</option>
+              <option value="uk">Великобритания</option>
+              <option value="portugal">Португалия</option>
+              <option value="greece">Греция</option>
+              <option value="croatia">Хорватия</option>
+              <option value="czech">Чехия</option>
+              <option value="netherlands">Нидерланды</option>
+              <option value="usa">США</option>
+              <option value="canada">Канада</option>
+              <option value="mexico">Мексика</option>
+              <option value="brazil">Бразилия</option>
+              <option value="argentina">Аргентина</option>
+              <option value="japan">Япония</option>
+              <option value="china">Китай</option>
+              <option value="south-korea">Южная Корея</option>
+              <option value="thailand">Таиланд</option>
+              <option value="uae">ОАЭ</option>
+              <option value="vietnam">Вьетнам</option>
+              <option value="indonesia">Индонезия</option>
+              <option value="turkey">Турция</option>
+              <option value="australia">Австралия</option>
+              <option value="new-zealand">Новая Зеландия</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="visa-type">Тип визы *</label>
+            <select id="visa-type" name="visa-type" required>
+              <option value="">Выберите тип визы</option>
+              <option value="tourist">Туристическая</option>
+              <option value="business">Деловая</option>
+              <option value="transit">Транзитная</option>
+              <option value="student">Учебная</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="travel-date">Планируемая дата поездки</label>
+            <input type="date" id="travel-date" name="travel-date">
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" onclick="nextStep(2)">Далее</button>
+          </div>
+        </div>
+
+        <div class="form-step-content" data-step="2" style="display: none;">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="last-name">Фамилия *</label>
+              <input type="text" id="last-name" name="last-name" placeholder="Иванов" required>
+            </div>
+            <div class="form-group">
+              <label for="first-name">Имя *</label>
+              <input type="text" id="first-name" name="first-name" placeholder="Иван" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="middle-name">Отчество</label>
+              <input type="text" id="middle-name" name="middle-name" placeholder="Иванович">
+            </div>
+            <div class="form-group">
+              <label for="birth-date">Дата рождения *</label>
+              <input type="date" id="birth-date" name="birth-date" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Телефон *</label>
+              <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="email@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="passport">Номер загранпаспорта *</label>
+            <input type="text" id="passport" name="passport" placeholder="12 3456789" required>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Назад</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep(3)">Далее</button>
+          </div>
+        </div>
+
+        <div class="form-step-content" data-step="3" style="display: none;">
+          <div class="form-group">
+            <label for="comments">Дополнительные пожелания</label>
+            <textarea id="comments" name="comments" placeholder="Расскажите о вашей поездке, особых требованиях или задайте вопрос..."></textarea>
+          </div>
+
+          <div style="background: var(--bg); padding: 16px; border-radius: var(--radius); margin-bottom: 24px;">
+            <p style="font-size: 14px; color: var(--text-secondary);">
+              Нажимая «Отправить заявку», вы соглашаетесь с
+              <a href="#" style="color: var(--accent);">политикой конфиденциальности</a>
+              и даете согласие на обработку персональных данных.
+            </p>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Назад</button>
+            <button type="submit" class="btn btn-primary">Отправить заявку</button>
+          </div>
+        </div>
+      </form>
+
+      <div id="success-message" style="display: none; text-align: center; padding: 48px 24px;">
+        <div style="font-size: 64px; margin-bottom: 16px; animation: float 2s ease-in-out infinite;">✓</div>
+        <h2 style="color: var(--primary); margin-bottom: 12px;">Заявка отправлена!</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 24px;">Наш специалист свяжется с вами в течение 15 минут</p>
+        <a href="index.html" class="btn btn-secondary">Вернуться на главную</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>VisaTourService</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 14px;">Профессиональное оформление виз с 2015 года.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <a href="tel:+78001234567">8 (800) 123-45-67</a>
+        <a href="mailto:info@visatourservice.ru">info@visatourservice.ru</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 VisaTourService. Все права защищены.
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    let currentStep = 1;
+
+    function nextStep(step) {
+      document.querySelector(`.form-step-content[data-step="${currentStep}"]`).style.display = 'none';
+      document.querySelector(`.form-step-content[data-step="${step}"]`).style.display = 'block';
+      document.querySelectorAll('.form-step').forEach((el, i) => {
+        el.classList.remove('active', 'completed');
+        if (i < step - 1) el.classList.add('completed');
+        if (i === step - 1) el.classList.add('active');
+      });
+      currentStep = step;
+    }
+
+    function prevStep(step) {
+      nextStep(step);
+    }
+
+    document.getElementById('visa-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = {
+        id: Date.now(),
+        country: document.getElementById('country').value,
+        visaType: document.getElementById('visa-type').value,
+        travelDate: document.getElementById('travel-date').value,
+        lastName: document.getElementById('last-name').value,
+        firstName: document.getElementById('first-name').value,
+        middleName: document.getElementById('middle-name').value,
+        birthDate: document.getElementById('birth-date').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        passport: document.getElementById('passport').value,
+        comments: document.getElementById('comments').value,
+        status: 'new',
+        createdAt: new Date().toISOString()
+      };
+      const applications = JSON.parse(localStorage.getItem('visa-applications') || '[]');
+      applications.push(formData);
+      localStorage.setItem('visa-applications', JSON.stringify(applications));
+      document.getElementById('visa-form').style.display = 'none';
+      document.getElementById('success-message').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страна — VisaTourService</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="country-page" id="country-body">
+  <header class="header header-transparent" id="page-header">
+    <nav class="nav">
+      <a href="index.html" class="logo logo-light">
+        <span class="logo-icon">✈</span>
+        VisaTourService
+      </a>
+      <ul class="nav-links nav-links-light">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="countries.html" class="active">Страны</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="reviews.html">Отзывы</a></li>
+      </ul>
+      <a href="apply.html" class="btn btn-glass">Оставить заявку</a>
+    </nav>
+  </header>
+
+  <!-- ИММЕРСИВНЫЙ HERO -->
+  <section class="immersive-hero" id="immersive-hero">
+    <div class="immersive-hero-bg" id="immersive-bg"></div>
+    <div class="immersive-hero-overlay"></div>
+    <div class="immersive-hero-content" id="hero-content">
+    </div>
+  </section>
+
+  <!-- КОНТЕНТ СТЕКЛО -->
+  <main class="immersive-main" id="immersive-main">
+    <section class="section">
+      <div class="immersive-grid">
+        <!-- ЛЕВАЯ КОЛОНКА -->
+        <div class="immersive-left">
+          <div class="glass-card">
+            <h3>О визе</h3>
+            <div id="country-description"></div>
+          </div>
+
+          <div class="glass-card" style="margin-top: 24px;">
+            <h3>Необходимые документы</h3>
+            <ul id="country-documents" style="padding-left: 20px;"></ul>
+          </div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <div class="immersive-right">
+          <div class="glass-card glass-card-accent">
+            <h3>Информация</h3>
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-label">Тип визы</span>
+                <span class="info-value" id="visa-type"></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Стоимость</span>
+                <span class="info-value info-price" id="visa-price"></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Срок пребывания</span>
+                <span class="info-value" id="visa-duration"></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Срок оформления</span>
+                <span class="info-value" id="visa-processing"></span>
+              </div>
+            </div>
+            <a href="apply.html" class="btn btn-apply-country" id="apply-btn" style="width: 100%; justify-content: center; margin-top: 24px;">Подать заявку</a>
+          </div>
+
+          <div class="glass-card" style="margin-top: 16px;">
+            <h3>Нужна консультация?</h3>
+            <p style="font-size: 14px; margin-bottom: 16px; opacity: 0.7;">Позвоните нам — перезвоним за 15 минут</p>
+            <a href="tel:+78001234567" class="btn btn-glass" style="width: 100%; justify-content: center;">8 (800) 123-45-67</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer footer-transparent">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>VisaTourService</h4>
+        <p style="opacity: 0.6; font-size: 14px;">Профессиональное оформление виз с 2015 года.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <a href="tel:+78001234567">8 (800) 123-45-67</a>
+        <a href="mailto:info@visatourservice.ru">info@visatourservice.ru</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 VisaTourService. Все права защищены.
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Палитры стран — только для акцентов, НЕ для фона
+    const COUNTRY_ACCENTS = {
+      'germany':     '#DD0000',
+      'france':      '#002395',
+      'italy':       '#008C45',
+      'spain':       '#AA151B',
+      'uk':          '#012169',
+      'portugal':    '#006600',
+      'greece':      '#0D5EAF',
+      'croatia':     '#171796',
+      'czech':       '#11457E',
+      'netherlands': '#AE1C28',
+      'usa':         '#3C3B6E',
+      'canada':      '#FF0000',
+      'mexico':      '#006847',
+      'brazil':      '#009B3A',
+      'argentina':   '#74ACDF',
+      'japan':       '#BC002D',
+      'china':       '#DE2910',
+      'south-korea': '#003478',
+      'thailand':    '#A51931',
+      'uae':         '#00732F',
+      'vietnam':     '#DA251D',
+      'indonesia':   '#CE1126',
+      'turkey':      '#E30A17',
+      'australia':   '#00008B',
+      'new-zealand': '#00247D'
+    };
+
+    function loadImmersivePage() {
+      const params = new URLSearchParams(window.location.search);
+      const countryId = params.get('id');
+      if (!countryId) { window.location.href = 'countries.html'; return; }
+      const country = COUNTRIES_DATA.countries.find(c => c.id === countryId);
+      if (!country) { window.location.href = 'countries.html'; return; }
+
+      const accent = COUNTRY_ACCENTS[countryId] || '#00B4D8';
+
+      document.title = `${country.name} — VisaTourService`;
+
+      // Фон — фотка страны на всю страницу
+      document.getElementById('immersive-bg').style.backgroundImage = `url(${country.photo})`;
+
+      // Акцент
+      document.documentElement.style.setProperty('--country-accent', accent);
+
+      // Hero контент
+      document.getElementById('hero-content').innerHTML = `
+        <div class="hero-flag-wrap">
+          <img src="${country.flagImg}" alt="${country.name}" class="hero-flag">
+        </div>
+        <h1 class="hero-title">${country.name}</h1>
+        <p class="hero-subtitle">${country.visaType}</p>
+        <div class="hero-meta">
+          <span>⭐ ${country.rating}</span>
+          <span>·</span>
+          <span>${country.reviews} отзывов</span>
+          <span>·</span>
+          <span>${country.price}</span>
+        </div>
+      `;
+
+      // Описание
+      document.getElementById('country-description').innerHTML = `
+        <p style="line-height: 1.8;">${country.description}</p>
+      `;
+
+      // Документы
+      document.getElementById('country-documents').innerHTML =
+        country.documents.map(d => `<li>${d}</li>`).join('');
+
+      // Инфо
+      document.getElementById('visa-type').textContent = country.visaType;
+      document.getElementById('visa-price').textContent = country.price;
+      document.getElementById('visa-duration').textContent = country.duration;
+      document.getElementById('visa-processing').textContent = country.processingTime;
+
+      // Кнопка
+      document.getElementById('apply-btn').style.background = accent;
+    }
+
+    loadImmersivePage();
+  </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отзывы — VisaTourService</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">✈</span>
+        VisaTourService
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="countries.html">Страны</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="reviews.html" class="active">Отзывы</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul>
+      <a href="apply.html" class="btn btn-primary">Оставить заявку</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-hero" style="min-height: 320px;">
+      <div class="about-hero-bg"></div>
+      <div class="about-hero-content fade-in">
+        <h1>Отзывы наших клиентов</h1>
+        <p>Более 10 000 людей уже получили визу с нами</p>
+      </div>
+    </section>
+
+    <!-- РЕЙТИНГ -->
+    <section class="section" style="padding-top: 0;">
+      <div class="reviews-summary fade-in">
+        <div class="reviews-score">
+          <span class="reviews-score-num">4.9</span>
+          <div class="reviews-score-stars">★★★★★</div>
+          <span class="reviews-score-count">基于 1 240 отзывов</span>
+        </div>
+        <div class="reviews-bars">
+          <div class="reviews-bar-row">
+            <span>5 ★</span>
+            <div class="reviews-bar"><div class="reviews-bar-fill" style="width: 89%;"></div></div>
+            <span>89%</span>
+          </div>
+          <div class="reviews-bar-row">
+            <span>4 ★</span>
+            <div class="reviews-bar"><div class="reviews-bar-fill" style="width: 8%;"></div></div>
+            <span>8%</span>
+          </div>
+          <div class="reviews-bar-row">
+            <span>3 ★</span>
+            <div class="reviews-bar"><div class="reviews-bar-fill" style="width: 2%;"></div></div>
+            <span>2%</span>
+          </div>
+          <div class="reviews-bar-row">
+            <span>2 ★</span>
+            <div class="reviews-bar"><div class="reviews-bar-fill" style="width: 1%;"></div></div>
+            <span>1%</span>
+          </div>
+          <div class="reviews-bar-row">
+            <span>1 ★</span>
+            <div class="reviews-bar"><div class="reviews-bar-fill" style="width: 0%;"></div></div>
+            <span>0%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section class="section" style="padding-top: 0;">
+      <div class="reviews-grid" id="reviews-grid">
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+      <div class="cta-card">
+        <h2>Хотите оставить отзыв?</h2>
+        <p>Ваш отзыв поможет другим путешественникам сделать выбор</p>
+        <a href="mailto:review@visatourservice.ru" class="btn btn-primary btn-large">Написать отзыв</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>VisaTourService</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 14px;">Профессиональное оформление виз с 2015 года.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <a href="tel:+78001234567">8 (800) 123-45-67</a>
+        <a href="mailto:info@visatourservice.ru">info@visatourservice.ru</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 VisaTourService. Все права защищены.
+    </div>
+  </footer>
+
+  <script>
+    const REVIEWS = [
+      {
+        name: "Алексей М.",
+        country: "Германия",
+        flag: "🇩🇪",
+        date: "Июль 2026",
+        rating: 5,
+        text: "Оформлял шенген через VisaTourService. Всё сделали за 4 дня! До этого сам пытался — получал отказ за отказом. Здесь всё профессионально и без лишних вопросов.",
+        avatar: "АМ"
+      },
+      {
+        name: "Марина К.",
+        country: "США",
+        flag: "🇺🇸",
+        date: "Июнь 2026",
+        rating: 5,
+        text: "Виза в США — это страшно, но не с этими ребятами. Подготовили все документы, провели подготовку к собеседованию. Визу получила с первого раза!",
+        avatar: "МК"
+      },
+      {
+        name: "Дмитрий В.",
+        country: "Япония",
+        flag: "🇯🇵",
+        date: "Июнь 2026",
+        rating: 5,
+        text: "Ехал в Японию на храмовый фестиваль. Думал, виза будет сложной. VisaTourService всё оформили за 5 дней. Ребята — молодцы, рекомендую!",
+        avatar: "ДВ"
+      },
+      {
+        name: "Елена С.",
+        country: "Италия",
+        flag: "🇮🇹",
+        date: "Май 2026",
+        rating: 5,
+        text: "Впервые ехали в Европу всей семьёй. VisaTourService помогли с визами для троих — мужа, меня и ребёнка. Всё было готово вовремя. Спасибо!",
+        avatar: "ЕС"
+      },
+      {
+        name: "Олег Т.",
+        country: "Великобритания",
+        flag: "🇬🇧",
+        date: "Май 2026",
+        rating: 5,
+        text: "Британская виза — одна из самых сложных. Но在这里 всё прошло гладко. Менеджер Мария — настоящий профессионал. Виза на 2 года!",
+        avatar: "ОТ"
+      },
+      {
+        name: "Анна Л.",
+        country: "Таиланд",
+        flag: "🇹🇭",
+        date: "Апрель 2026",
+        rating: 5,
+        text: "Летела в Таиланд на month. Визу оформили за 3 дня. Очень удобно — всё онлайн, никаких очередей. Цена тоже порадовала.",
+        avatar: "АЛ"
+      },
+      {
+        name: "Сергей П.",
+        country: "Канада",
+        flag: "🇨🇦",
+        date: "Апрель 2026",
+        rating: 5,
+        text: "Подавал на канадскую визу — долго, но результат того стоил. VisaTourService помогли собрать все документы и правильно заполнить анкету. Виза одобрена!",
+        avatar: "СП"
+      },
+      {
+        name: "Ирина Н.",
+        country: "ОАЭ",
+        flag: "🇦🇪",
+        date: "Март 2026",
+        rating: 5,
+        text: "Ехала в Дубай на шопинг. Визу получила за 2 дня! Ребята быстрые и вежливые. Уже второй раз обращаюсь — стабильно отлично.",
+        avatar: "ИН"
+      },
+      {
+        name: "Михаил Р.",
+        country: "Греция",
+        flag: "🇬🇷",
+        date: "Март 2026",
+        rating: 4,
+        text: "Шенген через Грецию — нормально, быстро. Единственное — хотелось бы чуть больше информации по документам на сайте. Но в целом — всё ок.",
+        avatar: "МР"
+      },
+      {
+        name: "Наталья Д.",
+        country: "Южная Корея",
+        flag: "🇰🇷",
+        date: "Февраль 2026",
+        rating: 5,
+        text: "Мечтала попасть в Корею — и вот я здесь! VisaTourService сделали всё возможное и невозможное. Визу получила за неделю. Спасибо-спасибо-спасибо!",
+        avatar: "НД"
+      },
+      {
+        name: "Павел Ж.",
+        country: "Австралия",
+        flag: "🇦🇺",
+        date: "Февраль 2026",
+        rating: 5,
+        text: "Австралия — сложная виза, много бумаг. Но команда VisaTourService знала, что делать. Всё оформили, даже помогли с медицинской страховкой.",
+        avatar: "ПЖ"
+      },
+      {
+        name: "Ольга В.",
+        country: "Испания",
+        flag: "🇪🇸",
+        date: "Январь 2026",
+        rating: 5,
+        text: "Ездили в Барселону на Новый год. Визу оформили быстро, документы помогли собрать. Всё на высшем уровне! Обязательно обращусь ещё.",
+        avatar: "ОВ"
+      }
+    ];
+
+    function renderReviews() {
+      const grid = document.getElementById('reviews-grid');
+      grid.innerHTML = REVIEWS.map(r => `
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">${r.avatar}</div>
+            <div class="review-meta">
+              <h4>${r.name}</h4>
+              <span>${r.flag} ${r.country} · ${r.date}</span>
+            </div>
+            <div class="review-rating">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+          </div>
+          <p class="review-text">${r.text}</p>
+        </div>
+      `).join('');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    renderReviews();
+  </script>
+</body>
+</html>
