@@ -1,22 +1,22 @@
 :root {
-  --primary: #111827;
-  --primary-light: #1F2937;
-  --accent: #059669;
-  --accent-hover: #047857;
-  --accent-glow: rgba(5, 150, 105, 0.08);
+  --primary: #1E3A5F;
+  --primary-light: #2A4F7A;
+  --accent: #E8725C;
+  --accent-hover: #D4614D;
+  --accent-glow: rgba(232, 114, 92, 0.08);
   --bg: #FFFFFF;
-  --surface: #F9FAFB;
-  --surface-hover: #F3F4F6;
-  --text-primary: #111827;
+  --surface: #F8F9FB;
+  --surface-hover: #F0F2F5;
+  --text-primary: #1A1F2E;
   --text-secondary: #6B7280;
-  --border: #E5E7EB;
-  --border-hover: #D1D5DB;
-  --success: #059669;
-  --warning: #D97706;
-  --error: #DC2626;
+  --border: #E2E5EB;
+  --border-hover: #CCD0D8;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-lg: 0 10px 25px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.04);
+  --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
   --radius: 10px;
   --radius-lg: 14px;
 }
@@ -862,13 +862,13 @@ tr:hover {
   font-weight: 600;
 }
 
-.status-new { background: rgba(5,150,105,0.1); color: var(--accent); }
-.status-processing { background: rgba(217,119,6,0.1); color: var(--warning); }
+.status-new { background: rgba(232,114,92,0.1); color: var(--accent); }
+.status-processing { background: rgba(245,158,11,0.1); color: var(--warning); }
 .status-documents { background: rgba(139,92,246,0.1); color: #8B5CF6; }
 .status-submitted { background: rgba(59,130,246,0.1); color: #3B82F6; }
-.status-approved { background: rgba(5,150,105,0.1); color: var(--success); }
+.status-approved { background: rgba(34,197,94,0.1); color: var(--success); }
 .status-completed { background: rgba(107,114,128,0.1); color: var(--text-secondary); }
-.status-rejected { background: rgba(220,38,38,0.1); color: var(--error); }
+.status-rejected { background: rgba(239,68,68,0.1); color: var(--error); }
 
 /* Application Detail */
 .app-detail {
@@ -1232,7 +1232,7 @@ tr:hover {
 .about-hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--primary) 0%, #1F2937 100%);
+  background: linear-gradient(135deg, #1E3A5F 0%, #152C4A 100%);
   opacity: 0.95;
 }
 
@@ -1241,8 +1241,8 @@ tr:hover {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(5, 150, 105, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 40%);
+    radial-gradient(circle at 20% 50%, rgba(232, 114, 92, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%);
 }
 
 .about-hero-content {
